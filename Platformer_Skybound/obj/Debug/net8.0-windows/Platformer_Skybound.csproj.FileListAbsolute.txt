@@ -1,0 +1,16 @@
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\bin\Debug\net8.0-windows\Platformer_Skybound.exe
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\bin\Debug\net8.0-windows\Platformer_Skybound.deps.json
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\bin\Debug\net8.0-windows\Platformer_Skybound.runtimeconfig.json
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\bin\Debug\net8.0-windows\Platformer_Skybound.dll
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\bin\Debug\net8.0-windows\Platformer_Skybound.pdb
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.AssemblyInfoInputs.cache
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.AssemblyInfo.cs
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.csproj.CoreCompileInputs.cache
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.dll
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\refint\Platformer_Skybound.dll
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.pdb
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.genruntimeconfig.cache
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\ref\Platformer_Skybound.dll
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.Resources.resources
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.csproj.GenerateResource.cache

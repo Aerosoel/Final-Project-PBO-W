@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer_Skybound", "Platformer_Skybound\Platformer_Skybound.csproj", "{260A9FB7-4558-47FC-8F77-44061914B8CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{260A9FB7-4558-47FC-8F77-44061914B8CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{260A9FB7-4558-47FC-8F77-44061914B8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{260A9FB7-4558-47FC-8F77-44061914B8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{260A9FB7-4558-47FC-8F77-44061914B8CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95270508-D18C-454A-A510-FBDBAF96CCA2}
+	EndGlobalSection
+EndGlobal
