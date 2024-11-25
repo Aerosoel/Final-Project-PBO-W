@@ -144,6 +144,8 @@ namespace Platformer_Skybound
         {
             _isPaused = !_isPaused;
             _pauseMenu.Visible = _isPaused;
+            _pauseMenu.BringToFront();
+            _pauseMenu.Refresh();
 
             if (_isPaused)
             {

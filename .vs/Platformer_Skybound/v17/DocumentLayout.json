@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|c:\\users\\ferzen kusuma\\source\\repos\\platformer_skybound\\platformer_skybound\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|solutionrelative:platformer_skybound\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|c:\\users\\ferzen kusuma\\source\\repos\\platformer_skybound\\platformer_skybound\\morninglevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|solutionrelative:platformer_skybound\\morninglevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|c:\\users\\ferzen kusuma\\source\\repos\\platformer_skybound\\platformer_skybound\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|solutionrelative:platformer_skybound\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|c:\\users\\ferzen kusuma\\source\\repos\\platformer_skybound\\platformer_skybound\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +34,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Player.cs",
               "RelativeDocumentMoniker": "Platformer_Skybound\\Player.cs",
@@ -47,13 +47,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MorningLevel.cs",
               "DocumentMoniker": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\MorningLevel.cs",
               "RelativeDocumentMoniker": "Platformer_Skybound\\MorningLevel.cs",
               "ToolTip": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\MorningLevel.cs",
               "RelativeToolTip": "Platformer_Skybound\\MorningLevel.cs",
-              "ViewState": "AgIAALYAAAAAAAAAAAAcwM8AAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAIkAAAAAAAAAAADwv5MAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-11T09:25:46.26Z",
               "EditorCaption": ""

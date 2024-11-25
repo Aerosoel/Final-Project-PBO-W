@@ -26,12 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -40,7 +36,7 @@
               "RelativeDocumentMoniker": "Platformer_Skybound\\Player.cs",
               "ToolTip": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Player.cs",
               "RelativeToolTip": "Platformer_Skybound\\Player.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAgwIcAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAgwIMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-19T07:59:51.062Z",
               "EditorCaption": ""
@@ -53,7 +49,7 @@
               "RelativeDocumentMoniker": "Platformer_Skybound\\MorningLevel.cs",
               "ToolTip": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\MorningLevel.cs",
               "RelativeToolTip": "Platformer_Skybound\\MorningLevel.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAYwCcAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAIkAAAAAAAAAAADwv5MAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-11T09:25:46.26Z",
               "EditorCaption": ""
@@ -81,6 +77,10 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-11T09:23:51.396Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             }
           ]
         }

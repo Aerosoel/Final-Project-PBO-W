@@ -14,3 +14,4 @@ C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\
 C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\ref\Platformer_Skybound.dll
 C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.Resources.resources
 C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.csproj.GenerateResource.cache
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.sourcelink.json
