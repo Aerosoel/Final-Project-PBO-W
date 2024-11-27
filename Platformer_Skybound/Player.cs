@@ -18,7 +18,7 @@ namespace Platformer_Skybound
         private Dictionary<string, (Image spriteSheet, int frameCount)> _animations;
 
         private int AnimationInterval = 125;
-        private int speed = 5;
+        public int speed = 5;
         private string _currentAnimation;
         private int _currentFrame;
         private bool _isMoving;
@@ -29,12 +29,12 @@ namespace Platformer_Skybound
 
         private System.Windows.Forms.Timer _animationTimer;
         public System.Windows.Forms.Timer _physicsTimer;
-
+        int LevelWidth = MorningLevel.LevelWidth;
         public event Action<int> PlayerMoved;
 
-        public Player(Point startPosition)
+        public Player(Point startPosition, int levelWidth)
         {
-
+            LevelWidth = levelWidth;
             _animations = new Dictionary<string, (Image spriteSheet, int frameCount)>();
 
             LoadAnimation("idle", Resources.player_idle, 4);
@@ -80,54 +80,67 @@ namespace Platformer_Skybound
 
         public void HandleKeyDown(Keys key, Size boundary)
         {
-            bool positionChanged = false;
-
-                switch (key)
-                {
-                    case Keys.Left:
-                        if(!_isJumping && !_isFalling)
-                        {
-                            _currentAnimation = "run";
-                        }
-                        _isFacingLeft = true;
-                        if (_playerPictureBox.Left > 0)
-                        {
-                            _playerPictureBox.Left -= speed;
-                            positionChanged = true;
-                        }
-                        break;
-
-                    case Keys.Right:
-                        if (!_isJumping && !_isFalling)
-                        {
-                            _currentAnimation = "run";
-                        }
-                        _isFacingLeft = false;
-                        if (_playerPictureBox.Right < boundary.Width)
-                        {
-                            _playerPictureBox.Left += speed;
-                            positionChanged = true;
-                        }
-                        break;
-
-                    case Keys.Up:
-                        if(!_isJumping && !_isFalling)
-                        {
-                            StartJump();
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
-
-            if (positionChanged)
+            switch (key)
             {
-                PlayerMoved?.Invoke(_playerPictureBox.Left); //Notify the new x position (sends an "event")
+                case Keys.Left:
+                    if (!_isJumping && !_isFalling)
+                    {
+                        _currentAnimation = "run";
+                    }
+                    _isFacingLeft = true;
+
+                    // Pemain bergerak ke kiri (cek batas)
+                    if (_playerPictureBox.Left > 0)
+                    {
+                        _playerPictureBox.Left -= speed; // Memindahkan pemain secara langsung
+                        PlayerMoved?.Invoke(_playerPictureBox.Left);
+                    }
+                    break;
+
+                case Keys.Right:
+                    if (!_isJumping && !_isFalling)
+                    {
+                        _currentAnimation = "run";
+                    }
+                    _isFacingLeft = false;
+
+                    // Pemain bergerak ke kanan (cek batas level)
+                    if (_playerPictureBox.Right + speed <= LevelWidth)
+                    {
+                        _playerPictureBox.Left += speed;
+                        PlayerMoved?.Invoke(_playerPictureBox.Left);
+                    }
+                    else
+                    {
+                        _playerPictureBox.Left = LevelWidth - _playerPictureBox.Width; // Tetap di ujung level
+                    }
+                    break;
+
+
+                case Keys.Up:
+                    if (!_isJumping && !_isFalling)
+                    {
+                        StartJump();
+                    }
+                    break;
+
+                default:
+                    break;
             }
 
-            UpdateSprite();
+            UpdateSprite(); // Memperbarui animasi setelah setiap langkah
         }
+
+        public void SetPositionX(int x)
+        {
+            _playerPictureBox.Left = x;
+        }
+        public int GetSpeed()
+        {
+            return speed;
+        }
+
+
 
         public void StopMovement()
         {
