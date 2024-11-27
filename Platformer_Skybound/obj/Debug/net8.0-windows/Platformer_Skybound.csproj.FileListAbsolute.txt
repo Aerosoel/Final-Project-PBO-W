@@ -33,3 +33,4 @@ D:\Tugas\Kuliah\Semester 3\PBO\FP\Final-Project-PBO\Platformer_Skybound\obj\Debu
 D:\Tugas\Kuliah\Semester 3\PBO\FP\Final-Project-PBO\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.genruntimeconfig.cache
 D:\Tugas\Kuliah\Semester 3\PBO\FP\Final-Project-PBO\Platformer_Skybound\obj\Debug\net8.0-windows\ref\Platformer_Skybound.dll
 D:\Tugas\Kuliah\Semester 3\PBO\FP\Final-Project-PBO\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.MainMenu.resources
+C:\Users\Ferzen Kusuma\source\repos\Platformer_Skybound\Platformer_Skybound\obj\Debug\net8.0-windows\Platformer_Skybound.MainMenu.resources

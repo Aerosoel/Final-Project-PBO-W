@@ -144,9 +144,11 @@ namespace Platformer_Skybound
 
         public void StopMovement()
         {
-            _currentAnimation = "idle";
-            _currentFrame = 0;
-            _isMoving = false;
+            if (!_isJumping && !_isFalling)
+            {
+                _currentAnimation = "idle";
+                _isMoving = false;
+            }
             UpdateSprite();
         }
 
@@ -169,11 +171,11 @@ namespace Platformer_Skybound
             {
                 _animationTimer.Interval = 125;  // Regular animation speed when on the ground
 
-                if (!_isMoving)
+                if (!_isMoving && _currentAnimation != "idle")
                 {
                     _currentAnimation = "idle";
                 }
-                else
+                else if(_isMoving && _currentAnimation != "run")
                 {
                     _currentAnimation = "run";
                 }

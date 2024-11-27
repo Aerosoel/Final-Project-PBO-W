@@ -31,6 +31,7 @@ namespace Platformer_Skybound
 
         private bool _isPlayerCentered = false;
         private int _centerX;
+
         public MorningLevel()
         {
             _morningClouds = ByteArrayToImage(Resources.clouds_morning);
@@ -71,7 +72,6 @@ namespace Platformer_Skybound
 
             _player = new Player(new Point(PlayerInitialPositionX, PlayerInitialPositionY), LevelWidth);
             this.Controls.Add(_player.GetPictureBox());
-
             _player.PlayerMoved += OnPlayerMoved;
 
             _levelPanel = new Panel
@@ -162,20 +162,44 @@ namespace Platformer_Skybound
         {
             if (_isPaused) return;
 
-            if (_pressedKeys.Contains(Keys.A))
+            if(_pressedKeys.Contains(Keys.A) && _pressedKeys.Contains(Keys.D))
             {
-                _player.HandleKeyDown(Keys.Left, this.ClientSize);
-                ScrollLevel(); // Panggil ScrollLevel jika tombol A ditekan
+                _inHorizontalConflict = true;
             }
-            else if (_pressedKeys.Contains(Keys.D))
+            else
             {
-                if (_player.GetPlayerXPosition() >= this.ClientSize.Width / 2 - (_player.GetPictureBox().Width / 2))
+                _inHorizontalConflict = false;
+            }
+
+            if (_inHorizontalConflict)
+            {
+                _player.StopMovement();
+            }
+            else
+            {
+                _inHorizontalConflict = false;
+
+                if (_pressedKeys.Contains(Keys.A))
                 {
-                    ScrollLevel(); // Hanya geser background jika pemain di tengah layar
+                    if (_player.GetPlayerXPosition() >= this.ClientSize.Width / 2 - ((_player.GetPictureBox().Width / 2)) + 10)
+                    {
+                        ScrollLevel(); // Hanya geser background jika pemain di tengah layar
+                    }
+                    else
+                    {
+                        _player.HandleKeyDown(Keys.Left, this.ClientSize); // Geser pemain jika belum di tengah layar
+                    }
                 }
-                else
+                else if (_pressedKeys.Contains(Keys.D))
                 {
-                    _player.HandleKeyDown(Keys.Right, this.ClientSize); // Geser pemain jika belum di tengah layar
+                    if (_player.GetPlayerXPosition() >= this.ClientSize.Width / 2 - ((_player.GetPictureBox().Width / 2)) + 5)
+                    {
+                        ScrollLevel(); // Hanya geser background jika pemain di tengah layar
+                    }
+                    else
+                    {
+                        _player.HandleKeyDown(Keys.Right, this.ClientSize); // Geser pemain jika belum di tengah layar
+                    }
                 }
             }
 
@@ -186,11 +210,17 @@ namespace Platformer_Skybound
         }
 
 
-
         private void ScrollLevel()
         {
             int playerX = _player.GetPlayerXPosition();
             int screenCenterX = this.ClientSize.Width / 2 - (_player.GetPictureBox().Width / 2);
+
+            if(playerX >= LevelWidth - _player.GetPictureBox().Width)
+            {
+                _player.SetPositionX(LevelWidth - _player.GetPictureBox().Width); // Clamp player's position to the right edge
+                return; // Do not scroll when right edge is reached
+            }
+
             if (_backgroundPictureBox.Left == 0 && playerX <= screenCenterX)
             {
                 // Jika pemain berada di posisi awal, jangan geser latar belakang
@@ -198,21 +228,16 @@ namespace Platformer_Skybound
             }
 
             // Kecepatan scrolling latar belakang
-            double backgroundSpeedFactor = 5;
+            double backgroundSpeedFactor = 2;
 
             // Jika pemain bergerak ke kanan
             if (_pressedKeys.Contains(Keys.D))
             {
                 // Cek apakah pemain di tengah layar dan background belum mentok kanan
-                if (playerX >= screenCenterX && _backgroundPictureBox.Left > -(LevelWidth - this.ClientSize.Width))
+                if (playerX > screenCenterX && _backgroundPictureBox.Left > -(LevelWidth - this.ClientSize.Width))
                 {
                     // Geser latar belakang
                     _backgroundPictureBox.Left -= (int)(_player.GetSpeed() * backgroundSpeedFactor);
-                }
-                else if (_backgroundPictureBox.Left <= -(LevelWidth - this.ClientSize.Width))
-                {
-                    // Background sudah mentok kanan, hanya geser pemain
-                    _player.HandleKeyDown(Keys.Right, this.ClientSize);
                 }
             }
 
@@ -224,11 +249,6 @@ namespace Platformer_Skybound
                 {
                     // Geser latar belakang
                     _backgroundPictureBox.Left += (int)(_player.GetSpeed() * backgroundSpeedFactor);
-                }
-                else if (_backgroundPictureBox.Left >= 0)
-                {
-                    // Background sudah mentok kiri, hanya geser pemain
-                    _player.HandleKeyDown(Keys.Left, this.ClientSize);
                 }
             }
 
@@ -251,6 +271,8 @@ namespace Platformer_Skybound
             {
                 _player.SetPositionX(LevelWidth - _player.GetPictureBox().Width);
             }
+
+
         }
 
 
