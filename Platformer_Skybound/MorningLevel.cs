@@ -181,7 +181,7 @@ namespace Platformer_Skybound
 
                 if (_pressedKeys.Contains(Keys.A))
                 {
-                    if (_player.GetPlayerXPosition() >= this.ClientSize.Width / 2 - ((_player.GetPictureBox().Width / 2)) + 10)
+                    if (_player.GetPlayerXPosition() <= this.ClientSize.Width / 2 - ((_player.GetPictureBox().Width / 2)))
                     {
                         ScrollLevel(); // Hanya geser background jika pemain di tengah layar
                     }
