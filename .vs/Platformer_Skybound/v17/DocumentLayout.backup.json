@@ -1,21 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\",
+  "WorkspaceRootPath": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|d:\\tugas\\kuliah\\semester 3\\pbo\\fp\\final-project-pbo\\platformer_skybound\\morninglevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|c:\\users\\ferzen kusuma\\source\\repos\\platformer_skybound\\platformer_skybound\\morninglevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|solutionrelative:platformer_skybound\\morninglevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|d:\\tugas\\kuliah\\semester 3\\pbo\\fp\\final-project-pbo\\platformer_skybound\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|c:\\users\\ferzen kusuma\\source\\repos\\platformer_skybound\\platformer_skybound\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|solutionrelative:platformer_skybound\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|d:\\tugas\\kuliah\\semester 3\\pbo\\fp\\final-project-pbo\\platformer_skybound\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|c:\\users\\ferzen kusuma\\source\\repos\\platformer_skybound\\platformer_skybound\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|solutionrelative:platformer_skybound\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|d:\\tugas\\kuliah\\semester 3\\pbo\\fp\\final-project-pbo\\platformer_skybound\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|c:\\users\\ferzen kusuma\\source\\repos\\platformer_skybound\\platformer_skybound\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{260A9FB7-4558-47FC-8F77-44061914B8CF}|Platformer_Skybound\\Platformer_Skybound.csproj|solutionrelative:platformer_skybound\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,21 +26,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Player.cs",
-              "DocumentMoniker": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\Player.cs",
+              "DocumentMoniker": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Player.cs",
               "RelativeDocumentMoniker": "Platformer_Skybound\\Player.cs",
-              "ToolTip": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\Player.cs",
+              "ToolTip": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Player.cs",
               "RelativeToolTip": "Platformer_Skybound\\Player.cs",
-              "ViewState": "AgIAAMgAAAAAAAAAAAAUwNYAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAtwLAAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-19T07:59:51.062Z",
               "IsPinned": true,
@@ -50,23 +46,27 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MorningLevel.cs",
-              "DocumentMoniker": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\MorningLevel.cs",
+              "DocumentMoniker": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\MorningLevel.cs",
               "RelativeDocumentMoniker": "Platformer_Skybound\\MorningLevel.cs",
-              "ToolTip": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\MorningLevel.cs",
+              "ToolTip": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\MorningLevel.cs",
               "RelativeToolTip": "Platformer_Skybound\\MorningLevel.cs",
-              "ViewState": "AgIAAKcAAAAAAAAAAAAUwLoAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-11T09:25:46.26Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "MainMenu.cs",
-              "DocumentMoniker": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\MainMenu.cs",
+              "DocumentMoniker": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\MainMenu.cs",
               "RelativeDocumentMoniker": "Platformer_Skybound\\MainMenu.cs",
-              "ToolTip": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\MainMenu.cs",
+              "ToolTip": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\MainMenu.cs",
               "RelativeToolTip": "Platformer_Skybound\\MainMenu.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -76,9 +76,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Program.cs",
               "RelativeDocumentMoniker": "Platformer_Skybound\\Program.cs",
-              "ToolTip": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\Program.cs",
+              "ToolTip": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Program.cs",
               "RelativeToolTip": "Platformer_Skybound\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

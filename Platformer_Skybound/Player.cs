@@ -12,7 +12,8 @@ namespace Platformer_Skybound
         private const int PlayerHeight = 60;
         private const int JumpSpeed = -16;
         private const int Gravity = 1;
-        private const int GroundLevel = 400;
+
+        const int GroundLevel = MorningLevel.GroundLevel;
 
         private PictureBox _playerPictureBox;
         private Dictionary<string, (Image spriteSheet, int frameCount)> _animations;
@@ -88,13 +89,6 @@ namespace Platformer_Skybound
                         _currentAnimation = "run";
                     }
                     _isFacingLeft = true;
-
-                    // Pemain bergerak ke kiri (cek batas)
-                    if (_playerPictureBox.Left > 0)
-                    {
-                        _playerPictureBox.Left -= speed; // Memindahkan pemain secara langsung
-                        PlayerMoved?.Invoke(_playerPictureBox.Left);
-                    }
                     break;
 
                 case Keys.Right:
@@ -103,19 +97,7 @@ namespace Platformer_Skybound
                         _currentAnimation = "run";
                     }
                     _isFacingLeft = false;
-
-                    // Pemain bergerak ke kanan (cek batas level)
-                    if (_playerPictureBox.Right + speed <= LevelWidth)
-                    {
-                        _playerPictureBox.Left += speed;
-                        PlayerMoved?.Invoke(_playerPictureBox.Left);
-                    }
-                    else
-                    {
-                        _playerPictureBox.Left = LevelWidth - _playerPictureBox.Width; // Tetap di ujung level
-                    }
                     break;
-
 
                 case Keys.Up:
                     if (!_isJumping && !_isFalling)
