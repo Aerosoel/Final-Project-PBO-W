@@ -109,15 +109,5 @@ namespace Platformer_Skybound {
                 return ((byte[])(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Tanah {
-            get {
-                object obj = ResourceManager.GetObject("Tanah", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }
