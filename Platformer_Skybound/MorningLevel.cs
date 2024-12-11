@@ -137,10 +137,10 @@ namespace Platformer_Skybound
                 Image rightCliffImage = ByteArrayToImage(Resources.Tanah);
 
                 // Gambar tebing kiri
-                g.DrawImage(leftCliffImage, 20, 0, 350, screenHeight);
+                g.DrawImage(leftCliffImage, 0, 0, 370, screenHeight);
 
                 // Gambar tebing kanan
-                g.DrawImage(rightCliffImage, 7630, 0, 350, screenHeight);
+                g.DrawImage(rightCliffImage, 7630, 0, 370, screenHeight);
             }
 
             return bitmapWithCliffs;
