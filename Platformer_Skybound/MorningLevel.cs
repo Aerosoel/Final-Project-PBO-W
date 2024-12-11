@@ -67,9 +67,7 @@ namespace Platformer_Skybound
 
             _pressedKeys = new HashSet<Keys>();
 
-            // Set the center position
             PlayerInitialPositionX = (this.ClientSize.Width / 2) - 20;
-
             _player = new Player(new Point(PlayerInitialPositionX, PlayerInitialPositionY), LevelWidth);
             this.Controls.Add(_player.GetPictureBox());
 
@@ -86,20 +84,57 @@ namespace Platformer_Skybound
             this.KeyDown += OnKeyDown;
             this.KeyUp += OnKeyUp;
 
-            _movementTimer = new System.Windows.Forms.Timer();
-            _movementTimer.Interval = 16; // Approx 60 FPS (16ms per frame)
+            _movementTimer = new System.Windows.Forms.Timer
+            {
+                Interval = 16 // Approx 60 FPS (16ms per frame)
+            };
             _movementTimer.Tick += OnMovementTick;
             _movementTimer.Start();
-            PictureBox ground = new PictureBox
+
+            // Membuat lapisan tanah
+            Image grassGround = ByteArrayToImage(Resources.Tanah); // Gambar tanah berumput
+            Image brownGround = ByteArrayToImage(Resources.TanahCoklat); // Gambar tanah coklat penuh
+
+            int groundHeight = 200; // Total tinggi ground
+            Image doubleLayerGround = CreateDoubleLayerGround(grassGround, brownGround, LevelWidth, groundHeight);
+
+            PictureBox groundPictureBox = new PictureBox
             {
-                Image = ByteArrayToImage(Resources.Tanah), // Ganti dengan nama resource ground Anda
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                Size = new Size(LevelWidth, 200), // Ukuran ground memanjang sepanjang level
-                Location = new Point(0, 400),   // Lokasi ground (di bawah posisi pemain)
-                BackColor = Color.Transparent // Pastikan transparan jika tidak ingin warna solid
+                Image = doubleLayerGround,
+                Size = new Size(LevelWidth, groundHeight),
+                Location = new Point(0, GroundLevel),
+                BackColor = Color.Transparent
             };
-            _levelPanel.Controls.Add(ground);
+
+            _levelPanel.Controls.Add(groundPictureBox);
         }
+
+        private Image CreateDoubleLayerGround(Image grassGround, Image brownGround, int levelWidth, int groundHeight)
+        {
+            int grassHeight = grassGround.Height; // Tinggi tanah berumput
+            int brownHeight = groundHeight - grassHeight; // Sisa tinggi untuk tanah coklat penuh
+
+            Bitmap groundBitmap = new Bitmap(levelWidth, groundHeight);
+
+            using (Graphics g = Graphics.FromImage(groundBitmap))
+            {
+                // Gambar tanah coklat penuh di bawah
+                for (int x = 0; x < levelWidth; x += brownGround.Width)
+                {
+                    g.DrawImage(brownGround, x, grassHeight, brownGround.Width, brownHeight);
+                }
+
+                // Gambar tanah berumput di atas
+                for (int x = 0; x < levelWidth; x += grassGround.Width)
+                {
+                    g.DrawImage(grassGround, x, 0, grassGround.Width, grassHeight);
+                }
+            }
+
+            return groundBitmap;
+        }
+
+
 
         private void InitializeBackground()
         {
@@ -132,19 +167,28 @@ namespace Platformer_Skybound
                 // Skala ulang latar belakang ke ukuran level
                 g.DrawImage(background, 0, 0, levelWidth, screenHeight);
 
-                // Muat gambar tebing dari Resources
-                Image leftCliffImage = ByteArrayToImage(Resources.Tanah);
-                Image rightCliffImage = ByteArrayToImage(Resources.Tanah);
+                // Muat gambar kecil (tile) untuk tebing dari Resources
+                Image cliffTile = ByteArrayToImage(Resources.TanahCoklat);
 
-                // Gambar tebing kiri
-                g.DrawImage(leftCliffImage, 0, 0, 370, screenHeight);
+                int tileWidth = 370;
+                int tileHeight = 370;
 
-                // Gambar tebing kanan
-                g.DrawImage(rightCliffImage, 7630, 0, 370, screenHeight);
+                // Gambar tebing kiri (vertikal)
+                for (int y = 0; y < screenHeight; y += tileHeight)
+                {
+                    g.DrawImage(cliffTile, 0, y, tileWidth, tileHeight);
+                }
+
+                // Gambar tebing kanan (vertikal)
+                for (int y = 0; y < screenHeight; y += tileHeight)
+                {
+                    g.DrawImage(cliffTile, levelWidth - tileWidth, y, tileWidth, tileHeight);
+                }
             }
 
             return bitmapWithCliffs;
         }
+
         private void OnPlayerMoved(int newPlayerX)
         {
             ScrollLevel();

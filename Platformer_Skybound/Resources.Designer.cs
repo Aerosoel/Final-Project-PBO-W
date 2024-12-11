@@ -63,9 +63,29 @@ namespace Platformer_Skybound {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Cliff {
+            get {
+                object obj = ResourceManager.GetObject("Cliff", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] clouds_morning {
             get {
                 object obj = ResourceManager.GetObject("clouds_morning", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Crate {
+            get {
+                object obj = ResourceManager.GetObject("Crate", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -113,9 +133,29 @@ namespace Platformer_Skybound {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Stone {
+            get {
+                object obj = ResourceManager.GetObject("Stone", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Tanah {
             get {
                 object obj = ResourceManager.GetObject("Tanah", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TanahCoklat {
+            get {
+                object obj = ResourceManager.GetObject("TanahCoklat", resourceCulture);
                 return ((byte[])(obj));
             }
         }

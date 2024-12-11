@@ -133,7 +133,19 @@
   <data name="clouds_morning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\4.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="TanahCoklat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\5.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Tanah" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\tile24.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Resources\2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Crate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Crate.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Stone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Stone.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cliff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BGTile (6).png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
