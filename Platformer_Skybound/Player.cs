@@ -157,7 +157,7 @@ namespace Platformer_Skybound
                 {
                     _currentAnimation = "idle";
                 }
-                else if(_isMoving && _currentAnimation != "run")
+                else if (_isMoving && _currentAnimation != "run")
                 {
                     _currentAnimation = "run";
                 }
@@ -169,19 +169,19 @@ namespace Platformer_Skybound
 
         private void HandleJumpAndFall()
         {
-            if( _isJumping || _isFalling)
+            if (_isJumping || _isFalling)
             {
                 _playerPictureBox.Top += _verticalVelocity;
                 _verticalVelocity += Gravity;
 
-                if(_playerPictureBox.Bottom >= GroundLevel)
+                if (_playerPictureBox.Bottom >= GroundLevel)
                 {
                     _playerPictureBox.Top = GroundLevel - PlayerHeight;
                     _isJumping = false;
                     _isFalling = false;
                     _verticalVelocity = 0;
                 }
-                else if(_verticalVelocity > 0) //Starts falling once player starts to move downwards
+                else if (_verticalVelocity > 0) //Starts falling once player starts to move downwards
                 {
                     _isJumping = false;
                     _isFalling = true;
@@ -203,7 +203,9 @@ namespace Platformer_Skybound
             {
                 if (_isFacingLeft)
                 {
-                    g.DrawImage(spriteSheet, new Rectangle(frameWidth, 0, -frameWidth, frameHeight), srcRect, GraphicsUnit.Pixel);
+                    // Flip the image horizontally
+                    g.TranslateTransform(frameWidth, 0); // Move the origin for flipping
+                    g.ScaleTransform(-1, 1); // Flip horizontally
                 }
                 else
                 {
@@ -214,7 +216,7 @@ namespace Platformer_Skybound
             _playerPictureBox.Image = currentFrameImage;
         }
 
-        
+
 
 
     }

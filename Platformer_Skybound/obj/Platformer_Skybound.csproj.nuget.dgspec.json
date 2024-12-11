@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Platformer_Skybound.csproj": {}
+    "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\Platformer_Skybound.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Platformer_Skybound.csproj": {
+    "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\Platformer_Skybound.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Platformer_Skybound.csproj",
+        "projectUniqueName": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\Platformer_Skybound.csproj",
         "projectName": "Platformer_Skybound",
-        "projectPath": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\Platformer_Skybound.csproj",
-        "packagesPath": "C:\\Users\\Ferzen Kusuma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ferzen Kusuma\\source\\repos\\Platformer_Skybound\\Platformer_Skybound\\obj\\",
+        "projectPath": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\Platformer_Skybound.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\Tugas\\Kuliah\\Semester 3\\PBO\\FP\\Final-Project-PBO\\Platformer_Skybound\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ferzen Kusuma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
