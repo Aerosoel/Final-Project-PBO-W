@@ -206,6 +206,7 @@ namespace Platformer_Skybound
                     // Flip the image horizontally
                     g.TranslateTransform(frameWidth, 0); // Move the origin for flipping
                     g.ScaleTransform(-1, 1); // Flip horizontally
+                    g.DrawImage(spriteSheet, new Rectangle(0, 0, frameWidth, frameHeight), srcRect, GraphicsUnit.Pixel);
                 }
                 else
                 {

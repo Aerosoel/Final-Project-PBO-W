@@ -121,15 +121,6 @@
   <data name="player_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Attack2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="player_idle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Idle.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="player_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Run.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="player_jump" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Jump.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="clouds_morning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\4.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -165,5 +156,14 @@
   </data>
   <data name="werewolf_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Run.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="player_jump" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Jump.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="player_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Run.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="player_idle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Idle.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
