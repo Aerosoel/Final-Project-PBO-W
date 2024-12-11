@@ -14,13 +14,6 @@ namespace Platformer_Skybound
         private PictureBox _tenguPictureBox;
         private Dictionary<string, (Image spriteSheet, int frameCount)> _animations;
 
-        private int AnimationInterval = 125;
-        private string _currentAnimation;
-        private int _currentFrame;
-        private bool _isMoving;
-        private bool _isFacingLeft;
-
-        private System.Windows.Forms.Timer _animationTimer;
         int LevelWidth = MorningLevel.LevelWidth;
 
         public Tengu(int health, int movementSpeed, Point startPosition)
