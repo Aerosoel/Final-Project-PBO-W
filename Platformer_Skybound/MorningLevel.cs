@@ -8,7 +8,7 @@ namespace Platformer_Skybound
     public class MorningLevel : Form
     {
         private int PlayerInitialPositionX;
-        private const int PlayerInitialPositionY = 350;
+        private const int PlayerInitialPositionY = 340;
         public const int GroundLevel = 400;
 
         private Player _player;
@@ -90,6 +90,15 @@ namespace Platformer_Skybound
             _movementTimer.Interval = 16; // Approx 60 FPS (16ms per frame)
             _movementTimer.Tick += OnMovementTick;
             _movementTimer.Start();
+            PictureBox ground = new PictureBox
+            {
+                Image = ByteArrayToImage(Resources.Tanah), // Ganti dengan nama resource ground Anda
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Size = new Size(LevelWidth, 200), // Ukuran ground memanjang sepanjang level
+                Location = new Point(0, 400),   // Lokasi ground (di bawah posisi pemain)
+                BackColor = Color.Transparent // Pastikan transparan jika tidak ingin warna solid
+            };
+            _levelPanel.Controls.Add(ground);
         }
 
         private void InitializeBackground()
@@ -101,11 +110,45 @@ namespace Platformer_Skybound
                 Size = new Size(LevelWidth, 600),
                 Location = new Point(0, 0)
             };
+            Image backgroundWithCliffs = AddCliffsToBackground(_morningClouds, LevelWidth, this.ClientSize.Height);
 
+            _backgroundPictureBox = new PictureBox
+            {
+                Image = backgroundWithCliffs,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Size = new Size(LevelWidth, this.ClientSize.Height),
+                Location = new Point(0, 0)
+            };
             _levelPanel.Controls.Add(_backgroundPictureBox);
             _backgroundPictureBox.SendToBack();
         }
 
+        private Image AddCliffsToBackground(Image background, int levelWidth, int screenHeight)
+        {
+            Bitmap bitmapWithCliffs = new Bitmap(levelWidth, screenHeight);
+
+            using (Graphics g = Graphics.FromImage(bitmapWithCliffs))
+            {
+                // Skala ulang latar belakang ke ukuran level
+                g.DrawImage(background, 0, 0, levelWidth, screenHeight);
+
+                // Muat gambar tebing dari Resources
+                Image leftCliffImage = ByteArrayToImage(Resources.Tanah);
+                Image rightCliffImage = ByteArrayToImage(Resources.Tanah);
+
+                // Gambar tebing kiri
+                g.DrawImage(leftCliffImage, 0, 0, 350, screenHeight);
+
+                // Gambar tebing kanan
+                g.DrawImage(rightCliffImage, 7600, 0, 350, screenHeight);
+            }
+
+            return bitmapWithCliffs;
+        }
+        private void OnPlayerMoved(int newPlayerX)
+        {
+            ScrollLevel();
+        }
         private void InitializePauseMenu()
         {
             _pauseMenu = new Panel
