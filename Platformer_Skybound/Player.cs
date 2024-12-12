@@ -9,7 +9,7 @@ namespace Platformer_Skybound
     public class Player
     {
         private const int PlayerWidth = 40;
-        private const int PlayerHeight = 60;
+        private const int PlayerHeight = 45;
         private const int JumpSpeed = -16;
         private const int Gravity = 1;
 
@@ -197,24 +197,30 @@ namespace Platformer_Skybound
             int frameHeight = spriteSheet.Height;
 
             Rectangle srcRect = new Rectangle(_currentFrame * frameWidth, 0, frameWidth, frameHeight);
+
             Bitmap currentFrameImage = new Bitmap(frameWidth, frameHeight);
 
             using (Graphics g = Graphics.FromImage(currentFrameImage))
             {
+                // Clear the graphics buffer to avoid leftover artifacts
+                g.Clear(Color.Transparent);
+
                 if (_isFacingLeft)
                 {
                     // Flip the image horizontally
                     g.TranslateTransform(frameWidth, 0); // Move the origin for flipping
                     g.ScaleTransform(-1, 1); // Flip horizontally
-                    g.DrawImage(spriteSheet, new Rectangle(0, 0, frameWidth, frameHeight), srcRect, GraphicsUnit.Pixel);
                 }
-                else
-                {
-                    g.DrawImage(spriteSheet, new Rectangle(0, 0, frameWidth, frameHeight), srcRect, GraphicsUnit.Pixel);
-                }
+
+                g.DrawImage(spriteSheet, new Rectangle(0, 0, frameWidth, frameHeight), srcRect, GraphicsUnit.Pixel);
             }
 
+            // Replace the old image safely
+            Image oldImage = _playerPictureBox.Image;
             _playerPictureBox.Image = currentFrameImage;
+
+            // Dispose of the old image to free memory
+            oldImage?.Dispose();
         }
 
 

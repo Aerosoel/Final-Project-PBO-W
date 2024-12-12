@@ -11,9 +11,15 @@ namespace Platformer_Skybound
         private const int PlayerInitialPositionY = 340;
         public const int GroundLevel = 400;
 
+        private const int TenguInitialPositionX = 2000;
+        private const int TenguInitialPositionY = 100;
+
         private Player _player;
+        private Tengu _tengu;
         private System.Windows.Forms.Timer _movementTimer;
         private HashSet<Keys> _pressedKeys; //Set to track currently pressed keys (works for simultaneous presses)
+
+        public HashSet<Keys> PressedKeys { get; private set; }
 
         private bool _inHorizontalConflict = false; //State tracker used for when both A and D keys are pressed together
 
@@ -27,6 +33,9 @@ namespace Platformer_Skybound
         private PictureBox _backgroundPictureBox;
         public const int LevelWidth = 8000;
         private const int ScrollOffset = 400;
+
+        // For Tengu
+        private PictureBox _tenguPictureBox;
 
         private Image _morningClouds;
 
@@ -67,10 +76,7 @@ namespace Platformer_Skybound
 
             _pressedKeys = new HashSet<Keys>();
 
-            PlayerInitialPositionX = (this.ClientSize.Width / 2) - 20;
-            _player = new Player(new Point(PlayerInitialPositionX, PlayerInitialPositionY), LevelWidth);
-            this.Controls.Add(_player.GetPictureBox());
-
+            // Creates the level layout
             _levelPanel = new Panel
             {
                 Size = new Size(LevelWidth, 600),
@@ -78,18 +84,6 @@ namespace Platformer_Skybound
                 BackColor = Color.Transparent
             };
             this.Controls.Add(_levelPanel);
-
-            InitializePauseMenu();
-
-            this.KeyDown += OnKeyDown;
-            this.KeyUp += OnKeyUp;
-
-            _movementTimer = new System.Windows.Forms.Timer
-            {
-                Interval = 16 // Approx 60 FPS (16ms per frame)
-            };
-            _movementTimer.Tick += OnMovementTick;
-            _movementTimer.Start();
 
             // Membuat lapisan tanah
             Image grassGround = ByteArrayToImage(Resources.Tanah); // Gambar tanah berumput
@@ -105,8 +99,33 @@ namespace Platformer_Skybound
                 Location = new Point(0, GroundLevel),
                 BackColor = Color.Transparent
             };
-
             _levelPanel.Controls.Add(groundPictureBox);
+
+            PlayerInitialPositionX = (this.ClientSize.Width / 2) - 20;
+            _player = new Player(new Point(PlayerInitialPositionX, PlayerInitialPositionY), LevelWidth);
+            this.Controls.Add(_player.GetPictureBox());
+            _player.GetPictureBox().BringToFront();
+
+            _tengu = new Tengu(3, 5, new Point(TenguInitialPositionX, TenguInitialPositionY));
+            _tenguPictureBox = _tengu.GetPictureBox();
+            _tenguPictureBox.Parent = _levelPanel; // Set the parent to the scrolling panel
+            _tenguPictureBox.BringToFront();
+            _levelPanel.Controls.Add(_tenguPictureBox);
+            _tenguPictureBox.Visible = false; // Initially hidden
+
+            InitializePauseMenu();
+
+            this.KeyDown += OnKeyDown;
+            this.KeyUp += OnKeyUp;
+
+            _movementTimer = new System.Windows.Forms.Timer
+            {
+                Interval = 16 // Approx 60 FPS (16ms per frame)
+            };
+            _movementTimer.Tick += OnMovementTick;
+            _movementTimer.Start();
+
+            
         }
 
         private Image CreateDoubleLayerGround(Image grassGround, Image brownGround, int levelWidth, int groundHeight)
@@ -344,10 +363,25 @@ namespace Platformer_Skybound
                 _player.SetPositionX(LevelWidth - _player.GetPictureBox().Width);
             }
 
-
+            UpdateTenguVisibilityAndPosition();
         }
 
+        private void UpdateTenguVisibilityAndPosition()
+        {
+            int tenguWorldX = TenguInitialPositionX;
+            int tenguScreenX = tenguWorldX + _backgroundPictureBox.Left;
 
+            if (tenguScreenX + _tenguPictureBox.Width > 0 && tenguScreenX < this.ClientSize.Width)
+            {
+                _tenguPictureBox.Visible = true;
+                _tenguPictureBox.Left = tenguScreenX;
+                _tenguPictureBox.Top = TenguInitialPositionY;
+            }
+            else
+            {
+                _tenguPictureBox.Visible = false;
+            }
+        }
 
 
 
