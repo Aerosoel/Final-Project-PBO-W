@@ -111,7 +111,6 @@ namespace Platformer_Skybound
             _tenguPictureBox.Parent = _levelPanel; // Set the parent to the scrolling panel
             _tenguPictureBox.BringToFront();
             _levelPanel.Controls.Add(_tenguPictureBox);
-            _tenguPictureBox.Visible = false; // Initially hidden
 
             InitializePauseMenu();
 

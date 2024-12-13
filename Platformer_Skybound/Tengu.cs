@@ -15,17 +15,21 @@ namespace Platformer_Skybound
         private Dictionary<string, (Image spriteSheet, int frameCount)> _animations;
 
         private int AnimationInterval = 125;
-        private int _movementSpeed;
         private string _currentAnimation;
         private int _currentFrame;
         private bool _isMoving;
-        private bool _isFacingLeft;
+        private bool _isFacingLeft = true;
 
         // Will be used for hovering movement
         private int _hoverRange = 40; // Maximum distance to hover up and down
         private int _hoverStep = 10;   // Step size for each hover movement
         private bool _hoveringUp = true; // Whether the Tengu is currently moving up
         private int _initialY; // The initial Y position of the Tengu
+        private int _initialX; // Initial X position of the Tengu
+
+        // Will be used for horizontal movement
+        private int _movementRange = 100;
+        private int _movementSpeed;
 
         private System.Windows.Forms.Timer _animationTimer;
 
@@ -34,6 +38,8 @@ namespace Platformer_Skybound
         {
             _animations = new Dictionary<string, (Image spriteSheet, int frameCount)>();
             _initialY = startPosition.Y;
+            _initialX = startPosition.X;
+            _movementSpeed = movementSpeed;
 
             LoadAnimation("fly", Resources.Tengu_fly, 15);
             LoadAnimation("death", Resources.Tengu_death, 6);
@@ -50,7 +56,11 @@ namespace Platformer_Skybound
             };
 
             _animationTimer = new System.Windows.Forms.Timer { Interval = AnimationInterval };
-            _animationTimer.Tick += (sender, e) => AnimateHover();
+            _animationTimer.Tick += (sender, e) =>
+            {
+                AnimateHover();
+                Move();
+            };
             _animationTimer.Start();
 
             UpdateSprite();
@@ -83,7 +93,27 @@ namespace Platformer_Skybound
 
         protected override void Move()
         {
+            /*
+            if (_isFacingLeft)
+            {
+                _tenguPictureBox.Left -= _movementSpeed;
 
+                // Reverse direction if reaching the left bound
+                if (_tenguPictureBox.Left <= _initialX - _movementRange)
+                {
+                    _isFacingLeft = false; // Start moving right
+                }
+            }
+            else
+            {
+                _tenguPictureBox.Left += _movementSpeed;
+
+                if(_tenguPictureBox.Right >= _initialX + _movementRange)
+                {
+                    _isFacingLeft = true;
+                }
+            }
+            */
         }
 
         public PictureBox GetPictureBox() => _tenguPictureBox;
