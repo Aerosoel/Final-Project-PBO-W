@@ -11,11 +11,8 @@ namespace Platformer_Skybound
         private const int PlayerInitialPositionY = 340;
         public const int GroundLevel = 400;
 
-        private const int TenguInitialPositionX = 2000;
-        private const int TenguInitialPositionY = 100;
 
         private Player _player;
-        private Tengu _tengu;
         private System.Windows.Forms.Timer _movementTimer;
         private HashSet<Keys> _pressedKeys; //Set to track currently pressed keys (works for simultaneous presses)
 
@@ -35,7 +32,16 @@ namespace Platformer_Skybound
         private const int ScrollOffset = 400;
 
         // For Tengu
+        private const int TenguInitialPositionX = 2000;
+        private const int TenguInitialPositionY = 100;
+        private Tengu _tengu;
         private PictureBox _tenguPictureBox;
+
+        // For werewolf
+        private const int WerewolfInitialPositionX = 500;
+        private const int WerewolfInitialPositionY = 280;
+        private Werewolf _werewolf;
+        private PictureBox _werewolfPictureBox;
 
         private Image _morningClouds;
 
@@ -101,16 +107,25 @@ namespace Platformer_Skybound
             };
             _levelPanel.Controls.Add(groundPictureBox);
 
+            // Add player to level
             PlayerInitialPositionX = (this.ClientSize.Width / 2) - 20;
             _player = new Player(new Point(PlayerInitialPositionX, PlayerInitialPositionY), LevelWidth);
             this.Controls.Add(_player.GetPictureBox());
             _player.GetPictureBox().BringToFront();
 
+            // Add Tengu to level
             _tengu = new Tengu(3, 5, new Point(TenguInitialPositionX, TenguInitialPositionY));
             _tenguPictureBox = _tengu.GetPictureBox();
             _tenguPictureBox.Parent = _levelPanel; // Set the parent to the scrolling panel
             _tenguPictureBox.BringToFront();
             _levelPanel.Controls.Add(_tenguPictureBox);
+
+            // Add werewolf to level
+            _werewolf = new Werewolf(5, 3, new Point(WerewolfInitialPositionX, WerewolfInitialPositionY));
+            _werewolfPictureBox = _werewolf.GetPictureBox();
+            _werewolfPictureBox.Parent = _levelPanel; // Set the parent to the scrolling panel
+            _werewolfPictureBox.BringToFront();
+            _levelPanel.Controls.Add(_werewolfPictureBox);
 
             InitializePauseMenu();
 
@@ -363,6 +378,7 @@ namespace Platformer_Skybound
             }
 
             UpdateTenguVisibilityAndPosition();
+            UpdateWerewolfVisibilityAndPosition();
         }
 
         private void UpdateTenguVisibilityAndPosition()
@@ -382,8 +398,22 @@ namespace Platformer_Skybound
             }
         }
 
+        private void UpdateWerewolfVisibilityAndPosition()
+        {
+            int werewolfWorldX = WerewolfInitialPositionX;
+            int werewolfScreenX = werewolfWorldX + _backgroundPictureBox.Left;
 
-
+            if (werewolfScreenX + _werewolfPictureBox.Width > 0 && werewolfScreenX < this.ClientSize.Width)
+            {
+                _werewolfPictureBox.Visible = true;
+                _werewolfPictureBox.Left = werewolfScreenX;
+                _werewolfPictureBox.Top = WerewolfInitialPositionY;
+            }
+            else
+            {
+                _werewolfPictureBox.Visible = false;
+            }
+        }
 
 
         private void OnKeyUp(object sender, KeyEventArgs e)

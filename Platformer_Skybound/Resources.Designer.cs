@@ -189,5 +189,15 @@ namespace Platformer_Skybound {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] werewolf_run {
+            get {
+                object obj = ResourceManager.GetObject("werewolf_run", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

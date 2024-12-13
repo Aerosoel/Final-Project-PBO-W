@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Platformer_Skybound
 {
-    public class Tengu : Monster, IFlying
+    public class Werewolf : Monster
     {
-        private const int TenguWidth = 110;
-        private const int TenguHeight = 130;
+        private const int WerewolfWidth = 120;
+        private const int WerewolfHeight = 130;
 
-        private PictureBox _tenguPictureBox;
+        private PictureBox _werewolfPictureBox;
         private Dictionary<string, (Image spriteSheet, int frameCount)> _animations;
 
         private int AnimationInterval = 125;
@@ -20,46 +20,36 @@ namespace Platformer_Skybound
         private bool _isMoving;
         private bool _isFacingLeft = true;
 
-        // Will be used for hovering movement
-        private int _hoverRange = 40; // Maximum distance to hover up and down
-        private int _hoverStep = 10;   // Step size for each hover movement
-        private bool _hoveringUp = true; // Whether the Tengu is currently moving up
-        private int _initialY; // The initial Y position of the Tengu
-        private int _initialX; // Initial X position of the Tengu
-
         // Will be used for horizontal movement
         private int _movementRange = 100;
         private int _movementSpeed;
 
         private System.Windows.Forms.Timer _animationTimer;
 
-        public Tengu(int health, int movementSpeed, Point startPosition)
+        public Werewolf(int health, int movementSpeed, Point startPosition)
             : base(health, movementSpeed, startPosition)
         {
             _animations = new Dictionary<string, (Image spriteSheet, int frameCount)>();
-            _initialY = startPosition.Y;
-            _initialX = startPosition.X;
             _movementSpeed = movementSpeed;
 
-            LoadAnimation("fly", Resources.Tengu_fly, 15);
-            LoadAnimation("death", Resources.Tengu_death, 6);
+            LoadAnimation("attack", Resources.werewolf_attack, 6);
+            LoadAnimation("run", Resources.werewolf_run, 9);
 
-            _currentAnimation = "fly";
+            _currentAnimation = "run";
             _currentFrame = 0;
             _isFacingLeft = false;
 
-            _tenguPictureBox = new PictureBox
+            _werewolfPictureBox = new PictureBox
             {
-                Size = new Size(TenguWidth, TenguHeight),
+                Size = new Size(WerewolfWidth, WerewolfHeight),
                 Location = startPosition,
-                BackColor = Color.Transparent
+                BackColor = Color.Red
             };
 
             _animationTimer = new System.Windows.Forms.Timer { Interval = AnimationInterval };
             _animationTimer.Tick += (sender, e) =>
             {
                 Animate();
-                AnimateHover();
                 Move();
             };
             _animationTimer.Start();
@@ -67,51 +57,10 @@ namespace Platformer_Skybound
             UpdateSprite();
         }
 
-        public void AnimateHover()
-        {
-            // Hover up and down
-            if (_hoveringUp)
-            {
-                _tenguPictureBox.Top -= _hoverStep;
-                if(_tenguPictureBox.Top <= _initialY - _hoverRange)
-                {
-                    _hoveringUp = false; // Reverse direction when reaching the top
-                }
-            }
-            else
-            {
-                _tenguPictureBox.Top += _hoverStep;
-                if (_tenguPictureBox.Top >= _initialY + _hoverRange)
-                {
-                    _hoveringUp = true; // Reverse direction when reaching the bottom
-                }
-            }
-
-        }
 
         protected override void Move()
         {
-            /*
-            if (_isFacingLeft)
-            {
-                _tenguPictureBox.Left -= _movementSpeed;
-
-                // Reverse direction if reaching the left bound
-                if (_tenguPictureBox.Left <= _initialX - _movementRange)
-                {
-                    _isFacingLeft = false; // Start moving right
-                }
-            }
-            else
-            {
-                _tenguPictureBox.Left += _movementSpeed;
             
-                if(_tenguPictureBox.Right >= _initialX + _movementRange)
-                {
-                    _isFacingLeft = true;
-                }
-            }
-            */
         }
 
         protected override void Animate()
@@ -120,7 +69,7 @@ namespace Platformer_Skybound
             UpdateSprite();
         }
 
-        public PictureBox GetPictureBox() => _tenguPictureBox;
+        public PictureBox GetPictureBox() => _werewolfPictureBox;
 
         private void LoadAnimation(string animationName, byte[] spriteData, int frameCount)
         {
@@ -129,7 +78,7 @@ namespace Platformer_Skybound
                 _animations[animationName] = (Image.FromStream(ms), frameCount);
             }
         }
-        
+
         private void UpdateSprite()
         {
             var (spriteSheet, frameCount) = _animations[_currentAnimation];
@@ -157,12 +106,12 @@ namespace Platformer_Skybound
             }
 
             // Replace the old image safely
-            Image oldImage = _tenguPictureBox.Image;
-            _tenguPictureBox.Image = currentFrameImage;
+            Image oldImage = _werewolfPictureBox.Image;
+            _werewolfPictureBox.Image = currentFrameImage;
 
             // Dispose of the old image to free memory
             oldImage?.Dispose();
         }
-        
+
     }
 }

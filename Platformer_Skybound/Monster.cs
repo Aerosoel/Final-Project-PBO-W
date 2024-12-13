@@ -33,5 +33,7 @@ namespace Platformer_Skybound
         public bool IsAlive() => Health > 0;
 
         protected abstract void Move();
+
+        protected abstract void Animate();
     }
 }
