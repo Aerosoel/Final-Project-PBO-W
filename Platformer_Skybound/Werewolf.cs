@@ -35,10 +35,11 @@ namespace Platformer_Skybound
 
             _initialX = startPosition.X;
 
-            LoadAnimation("attack", Resources.werewolf_attack, 6);
-            LoadAnimation("run", Resources.werewolf_run, 9);
+            // Memuat animasi gerakan ke kanan dan kiri
+            LoadAnimation("run_right", Resources.werewolf_run_right, 9); // Animasi gerakan ke kanan
+            LoadAnimation("run_left", Resources.werewolf_run_left, 9);  // Animasi gerakan ke kiri
 
-            _currentAnimation = "run";
+            _currentAnimation = "run_right"; // Default animasi ketika bergerak ke kanan
             _currentFrame = 0;
             _isFacingLeft = false;
 
@@ -46,7 +47,7 @@ namespace Platformer_Skybound
             {
                 Size = new Size(WerewolfWidth, WerewolfHeight),
                 Location = startPosition,
-                BackColor = Color.Red
+                BackColor = Color.Transparent // Menggunakan transparan untuk gambar
             };
 
             _animationTimer = new System.Windows.Forms.Timer { Interval = AnimationInterval };
@@ -60,7 +61,6 @@ namespace Platformer_Skybound
             UpdateSprite();
         }
 
-
         protected override void Move()
         {
             if (_isFacingLeft)
@@ -68,9 +68,10 @@ namespace Platformer_Skybound
                 _werewolfPictureBox.Left -= _movementSpeed;
 
                 // Reverse direction if reaching the left bound
-                if (_werewolfPictureBox.Left <=  - _movementRange)
+                if (_werewolfPictureBox.Left <= -_movementRange)
                 {
                     _isFacingLeft = false; // Start moving right
+                    SetAnimation(); // Update animasi ketika arah berubah
                 }
             }
             else
@@ -79,7 +80,8 @@ namespace Platformer_Skybound
 
                 if (_werewolfPictureBox.Left >= _initialX + _movementRange)
                 {
-                    _isFacingLeft = true;
+                    _isFacingLeft = true; // Start moving left
+                    SetAnimation(); // Update animasi ketika arah berubah
                 }
             }
         }
@@ -96,43 +98,45 @@ namespace Platformer_Skybound
         {
             using (MemoryStream ms = new MemoryStream(spriteData))
             {
-                _animations[animationName] = (Image.FromStream(ms), frameCount);
+                var spriteSheet = Image.FromStream(ms);
+                _animations[animationName] = (spriteSheet, frameCount);
             }
         }
 
         private void UpdateSprite()
         {
             var (spriteSheet, frameCount) = _animations[_currentAnimation];
-
             int frameWidth = spriteSheet.Width / frameCount;
             int frameHeight = spriteSheet.Height;
 
+            // Hitung posisi potongan untuk frame saat ini
             Rectangle srcRect = new Rectangle(_currentFrame * frameWidth, 0, frameWidth, frameHeight);
 
+            // Buat gambar frame saat ini
             Bitmap currentFrameImage = new Bitmap(frameWidth, frameHeight);
-
             using (Graphics g = Graphics.FromImage(currentFrameImage))
             {
-                // Clear the graphics buffer to avoid leftover artifacts
-                g.Clear(Color.Transparent);
-
-                if (_isFacingLeft)
-                {
-                    // Flip the image horizontally
-                    g.TranslateTransform(frameWidth, 0); // Move the origin for flipping
-                    g.ScaleTransform(-1, 1); // Flip horizontally
-                }
-
                 g.DrawImage(spriteSheet, new Rectangle(0, 0, frameWidth, frameHeight), srcRect, GraphicsUnit.Pixel);
             }
 
-            // Replace the old image safely
+            // Ganti gambar lama dengan yang baru
             Image oldImage = _werewolfPictureBox.Image;
             _werewolfPictureBox.Image = currentFrameImage;
-
-            // Dispose of the old image to free memory
             oldImage?.Dispose();
         }
 
+        // Fungsi untuk mengganti animasi sesuai arah
+        private void SetAnimation()
+        {
+            // Cek apakah menghadap kiri atau kanan
+            if (_isFacingLeft)
+            {
+                _currentAnimation = "run_left"; // Gunakan animasi saat bergerak ke kiri
+            }
+            else
+            {
+                _currentAnimation = "run_right"; // Gunakan animasi saat bergerak ke kanan
+            }
+        }
     }
 }

@@ -157,7 +157,10 @@
   <data name="player_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Run.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="werewolf_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="werewolf_run_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Run-left.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="werewolf_run_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\werewolf_run.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

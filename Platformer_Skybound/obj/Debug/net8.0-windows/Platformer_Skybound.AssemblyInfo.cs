@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Platformer_Skybound")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ddfcc0eb1d9a4512ce10f0a3cf0480187d63b41")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc3df9225edfcab6668720806b28458482609b37")]
 [assembly: System.Reflection.AssemblyProductAttribute("Platformer_Skybound")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Platformer_Skybound")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
