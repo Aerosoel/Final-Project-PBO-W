@@ -148,16 +148,16 @@
   <data name="werewolf_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Attack_1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="player_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Run.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Tengu_fly" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Jump.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="player_jump" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\character_jump.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="werewolf_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="player_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Run.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="werewolf_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\werewolf_run.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

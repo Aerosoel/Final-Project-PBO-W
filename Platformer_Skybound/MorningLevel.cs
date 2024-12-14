@@ -113,12 +113,14 @@ namespace Platformer_Skybound
             this.Controls.Add(_player.GetPictureBox());
             _player.GetPictureBox().BringToFront();
 
+            
             // Add Tengu to level
             _tengu = new Tengu(3, 5, new Point(TenguInitialPositionX, TenguInitialPositionY));
             _tenguPictureBox = _tengu.GetPictureBox();
             _tenguPictureBox.Parent = _levelPanel; // Set the parent to the scrolling panel
             _tenguPictureBox.BringToFront();
             _levelPanel.Controls.Add(_tenguPictureBox);
+            
 
             // Add werewolf to level
             _werewolf = new Werewolf(5, 3, new Point(WerewolfInitialPositionX, WerewolfInitialPositionY));

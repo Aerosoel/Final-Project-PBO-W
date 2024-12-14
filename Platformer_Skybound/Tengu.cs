@@ -60,7 +60,6 @@ namespace Platformer_Skybound
             {
                 Animate();
                 AnimateHover();
-                Move();
             };
             _animationTimer.Start();
 
@@ -106,12 +105,13 @@ namespace Platformer_Skybound
             {
                 _tenguPictureBox.Left += _movementSpeed;
             
-                if(_tenguPictureBox.Right >= _initialX + _movementRange)
+                if(_tenguPictureBox.Left >= _initialX + _movementRange)
                 {
                     _isFacingLeft = true;
                 }
             }
             */
+            
         }
 
         protected override void Animate()
