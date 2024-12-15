@@ -25,11 +25,12 @@ namespace Platformer_Skybound
         private Button _backToMainMenuButton;
         private bool _isPaused = false;
 
-        //For current view panel
+        //For current level panel
         private Panel _levelPanel;
         private PictureBox _backgroundPictureBox;
         public const int LevelWidth = 8000;
         private const int ScrollOffset = 400;
+        private Label _healthLabel;
 
         // For Tengu
         private const int TenguInitialPositionX = 2000;
@@ -38,10 +39,18 @@ namespace Platformer_Skybound
         private PictureBox _tenguPictureBox;
 
         // For werewolf
-        private const int WerewolfInitialPositionX = 500;
+        private const int WerewolfInitialPositionX = 4000;
         private const int WerewolfInitialPositionY = 280;
         private Werewolf _werewolf;
         private PictureBox _werewolfPictureBox;
+
+        // For door
+        private const int DoorWidth = 100;
+        private const int DoorHeight = 150;
+        private const int DoorPositionX = 7530;
+        private const int DoorPositionY = 250;
+        private PictureBox doorPictureBox;
+        private bool levelCompleteFlag = false;
 
         private Image _morningClouds;
 
@@ -98,6 +107,8 @@ namespace Platformer_Skybound
             int groundHeight = 200; // Total tinggi ground
             Image doubleLayerGround = CreateDoubleLayerGround(grassGround, brownGround, LevelWidth, groundHeight);
 
+            Image door = ByteArrayToImage(Resources.door);
+
             PictureBox groundPictureBox = new PictureBox
             {
                 Image = doubleLayerGround,
@@ -107,13 +118,36 @@ namespace Platformer_Skybound
             };
             _levelPanel.Controls.Add(groundPictureBox);
 
+            // Adds door to level
+            doorPictureBox = new PictureBox
+            {
+                Image = door,
+                Size = new Size(DoorWidth, DoorHeight),
+                Location = new Point(DoorPositionX, DoorPositionY),
+                BackColor = Color.Transparent
+            };
+            _levelPanel.Controls.Add(doorPictureBox);
+            doorPictureBox.BringToFront();
+
             // Add player to level
             PlayerInitialPositionX = (this.ClientSize.Width / 2) - 20;
-            _player = new Player(new Point(PlayerInitialPositionX, PlayerInitialPositionY), LevelWidth);
+            _player = new Player(3, new Point(PlayerInitialPositionX, PlayerInitialPositionY), LevelWidth);
             this.Controls.Add(_player.GetPictureBox());
             _player.GetPictureBox().BringToFront();
 
-            
+            // Adds a label for health
+            _healthLabel = new Label
+            {
+                Text = $"Health: {_player.Health}",
+                Location = new Point(10, 10),
+                ForeColor = Color.White,
+                BackColor = Color.Transparent,
+                Font = new Font("Arial", 16),
+                AutoSize = true
+            };
+            _levelPanel.Controls.Add(_healthLabel);
+
+
             // Add Tengu to level
             _tengu = new Tengu(3, 5, new Point(TenguInitialPositionX, TenguInitialPositionY));
             _tenguPictureBox = _tengu.GetPictureBox();
@@ -123,7 +157,7 @@ namespace Platformer_Skybound
             
 
             // Add werewolf to level
-            _werewolf = new Werewolf(5, 3, new Point(WerewolfInitialPositionX, WerewolfInitialPositionY));
+            _werewolf = new Werewolf(5, 5, new Point(WerewolfInitialPositionX, WerewolfInitialPositionY));
             _werewolfPictureBox = _werewolf.GetPictureBox();
             _werewolfPictureBox.Parent = _levelPanel; // Set the parent to the scrolling panel
             _werewolfPictureBox.BringToFront();
@@ -309,6 +343,9 @@ namespace Platformer_Skybound
             {
                 _player.HandleKeyDown(Keys.Up, this.ClientSize);
             }
+
+            _werewolf.Move();
+            UpdateWerewolfVisibilityAndPosition();
         }
 
 
@@ -380,7 +417,8 @@ namespace Platformer_Skybound
             }
 
             UpdateTenguVisibilityAndPosition();
-            UpdateWerewolfVisibilityAndPosition();
+            UpdateDoorPosition();
+            CheckPlayerDoorInteraction();
         }
 
         private void UpdateTenguVisibilityAndPosition()
@@ -402,9 +440,9 @@ namespace Platformer_Skybound
 
         private void UpdateWerewolfVisibilityAndPosition()
         {
-            int werewolfWorldX = WerewolfInitialPositionX;
-            int werewolfScreenX = werewolfWorldX + _backgroundPictureBox.Left;
+            int werewolfScreenX = _werewolf.WorldX + _backgroundPictureBox.Left;
 
+            // Check if werewolf is within the visible screen bounds
             if (werewolfScreenX + _werewolfPictureBox.Width > 0 && werewolfScreenX < this.ClientSize.Width)
             {
                 _werewolfPictureBox.Visible = true;
@@ -414,6 +452,24 @@ namespace Platformer_Skybound
             else
             {
                 _werewolfPictureBox.Visible = false;
+            }
+
+        }
+
+        private void UpdateDoorPosition()
+        {
+            int doorWorldX = DoorPositionX;
+            int doorScreenX = doorWorldX + _backgroundPictureBox.Left;
+
+            if (doorScreenX + doorPictureBox.Width > 0 && doorScreenX < this.ClientSize.Width)
+            {
+                doorPictureBox.Visible = true;
+                doorPictureBox.Left = doorScreenX;
+                doorPictureBox.Top = DoorPositionY;
+            }
+            else
+            {
+                doorPictureBox.Visible = false;
             }
         }
 
@@ -441,5 +497,26 @@ namespace Platformer_Skybound
 
             _pressedKeys.Add(e.KeyCode);
         }
+
+        // --------------------------------------- Interaction functions ----------------------------------------------------
+        private void CheckPlayerDoorInteraction()
+        {
+            // Check if player's PictureBox intersects with the door's PictureBox
+            if (_player.GetPictureBox().Bounds.IntersectsWith(doorPictureBox.Bounds))
+            {
+                HandleLevelCompletion();
+            }
+        }
+
+        private void HandleLevelCompletion()
+        {
+            if (!levelCompleteFlag)
+            {
+                levelCompleteFlag = true;
+                MessageBox.Show("Level Complete!");
+                this.Close();
+            }
+        }
+
     }
 }

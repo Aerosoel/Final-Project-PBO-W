@@ -88,7 +88,7 @@ namespace Platformer_Skybound
 
         }
 
-        protected override void Move()
+        public override void Move()
         {
             /*
             if (_isFacingLeft)

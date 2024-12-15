@@ -12,6 +12,7 @@ namespace Platformer_Skybound
         private const int PlayerHeight = 45;
         private const int JumpSpeed = -16;
         private const int Gravity = 1;
+        public int Health { get; private set; }
 
         const int GroundLevel = MorningLevel.GroundLevel;
 
@@ -33,8 +34,9 @@ namespace Platformer_Skybound
         int LevelWidth = MorningLevel.LevelWidth;
         public event Action<int> PlayerMoved;
 
-        public Player(Point startPosition, int levelWidth)
+        public Player(int health, Point startPosition, int levelWidth)
         {
+            Health = health;
             LevelWidth = levelWidth;
             _animations = new Dictionary<string, (Image spriteSheet, int frameCount)>();
 

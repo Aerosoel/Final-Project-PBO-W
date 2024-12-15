@@ -93,6 +93,16 @@ namespace Platformer_Skybound {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] door {
+            get {
+                object obj = ResourceManager.GetObject("door", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] player_attack {
             get {
                 object obj = ResourceManager.GetObject("player_attack", resourceCulture);

@@ -19,11 +19,12 @@ namespace Platformer_Skybound
         private int _currentFrame;
         private bool _isMoving;
         private bool _isFacingLeft = true;
-        private int _initialX;
 
         // Will be used for horizontal movement
-        private int _movementRange = 30;
-        private int _movementSpeed;
+        private int _movementRange = 200;
+        public int MovementSpeed { get; private set; }
+        private int _initialX;
+        public int WorldX { get; private set; }
 
         private System.Windows.Forms.Timer _animationTimer;
 
@@ -31,9 +32,10 @@ namespace Platformer_Skybound
             : base(health, movementSpeed, startPosition)
         {
             _animations = new Dictionary<string, (Image spriteSheet, int frameCount)>();
-            _movementSpeed = movementSpeed;
+            MovementSpeed = movementSpeed;
 
             _initialX = startPosition.X;
+            WorldX = startPosition.X;
 
             // Memuat animasi gerakan ke kanan dan kiri
             LoadAnimation("run_right", Resources.werewolf_run_right, 9); // Animasi gerakan ke kanan
@@ -47,28 +49,27 @@ namespace Platformer_Skybound
             {
                 Size = new Size(WerewolfWidth, WerewolfHeight),
                 Location = startPosition,
-                BackColor = Color.Transparent // Menggunakan transparan untuk gambar
+                BackColor = Color.Transparent
             };
 
             _animationTimer = new System.Windows.Forms.Timer { Interval = AnimationInterval };
             _animationTimer.Tick += (sender, e) =>
             {
                 Animate();
-                Move();
             };
             _animationTimer.Start();
 
             UpdateSprite();
         }
 
-        protected override void Move()
+        public override void Move()
         {
             if (_isFacingLeft)
             {
-                _werewolfPictureBox.Left -= _movementSpeed;
+                WorldX -= MovementSpeed;
 
                 // Reverse direction if reaching the left bound
-                if (_werewolfPictureBox.Left <= -_movementRange)
+                if (WorldX <= _initialX - _movementRange)
                 {
                     _isFacingLeft = false; // Start moving right
                     SetAnimation(); // Update animasi ketika arah berubah
@@ -76,14 +77,16 @@ namespace Platformer_Skybound
             }
             else
             {
-                _werewolfPictureBox.Left += _movementSpeed;
+                WorldX += MovementSpeed;
 
-                if (_werewolfPictureBox.Left >= _initialX + _movementRange)
+                if (WorldX >= _initialX + _movementRange)
                 {
                     _isFacingLeft = true; // Start moving left
                     SetAnimation(); // Update animasi ketika arah berubah
                 }
             }
+
+            _werewolfPictureBox.Left = WorldX;
         }
 
         protected override void Animate()
