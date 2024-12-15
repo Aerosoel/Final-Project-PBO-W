@@ -34,15 +34,19 @@ namespace Platformer_Skybound
 
         // For Tengu
         private const int TenguInitialPositionX = 2000;
-        private const int TenguInitialPositionY = 100;
+        private const int TenguInitialPositionY = 200;
         private Tengu _tengu;
         private PictureBox _tenguPictureBox;
+        private bool _tenguTakingDamage = false;
+        private System.Windows.Forms.Timer _tenguDamageTimer;
 
         // For werewolf
         private const int WerewolfInitialPositionX = 4000;
         private const int WerewolfInitialPositionY = 280;
         private Werewolf _werewolf;
         private PictureBox _werewolfPictureBox;
+        private bool _werewolfTakingDamage = false;
+        private System.Windows.Forms.Timer _werewolfDamageTimer;
 
         // For door
         private const int DoorWidth = 100;
@@ -51,6 +55,11 @@ namespace Platformer_Skybound
         private const int DoorPositionY = 250;
         private PictureBox doorPictureBox;
         private bool levelCompleteFlag = false;
+
+        // For damage taken
+        private bool _isInvincible = false;
+        private const int InvincibilityDuration = 1000;
+        private System.Windows.Forms.Timer _invincibilityTimer;
 
         private Image _morningClouds;
 
@@ -131,21 +140,9 @@ namespace Platformer_Skybound
 
             // Add player to level
             PlayerInitialPositionX = (this.ClientSize.Width / 2) - 20;
-            _player = new Player(3, new Point(PlayerInitialPositionX, PlayerInitialPositionY), LevelWidth);
+            _player = new Player(20, new Point(PlayerInitialPositionX, PlayerInitialPositionY), LevelWidth);
             this.Controls.Add(_player.GetPictureBox());
             _player.GetPictureBox().BringToFront();
-
-            // Adds a label for health
-            _healthLabel = new Label
-            {
-                Text = $"Health: {_player.Health}",
-                Location = new Point(10, 10),
-                ForeColor = Color.White,
-                BackColor = Color.Transparent,
-                Font = new Font("Arial", 16),
-                AutoSize = true
-            };
-            _levelPanel.Controls.Add(_healthLabel);
 
 
             // Add Tengu to level
@@ -163,17 +160,55 @@ namespace Platformer_Skybound
             _werewolfPictureBox.BringToFront();
             _levelPanel.Controls.Add(_werewolfPictureBox);
 
+            // Adds a label for health
+            _healthLabel = new Label
+            {
+                Text = $"Health: {_player.Health}",
+                Location = new Point(10, 10),
+                ForeColor = Color.White,
+                BackColor = Color.Transparent,
+                Font = new Font("Arial", 16),
+                AutoSize = true
+            };
+            _levelPanel.Controls.Add(_healthLabel);
+
             InitializePauseMenu();
 
             this.KeyDown += OnKeyDown;
             this.KeyUp += OnKeyUp;
+            groundPictureBox.MouseClick += new MouseEventHandler(OnLevelMouseClick);
 
+            // Timer for movement
             _movementTimer = new System.Windows.Forms.Timer
             {
                 Interval = 16 // Approx 60 FPS (16ms per frame)
             };
             _movementTimer.Tick += OnMovementTick;
             _movementTimer.Start();
+
+            // Timer for I-frames
+            _invincibilityTimer = new System.Windows.Forms.Timer
+            {
+                Interval = InvincibilityDuration
+            };
+            _invincibilityTimer.Tick += (sender, args) => _isInvincible = false; // Reset invincibility
+            _invincibilityTimer.Stop();
+
+            // Timer for Tengu taking damage
+            _tenguDamageTimer = new System.Windows.Forms.Timer
+            {
+                Interval = InvincibilityDuration
+            };
+            _tenguDamageTimer.Tick += (sender, args) => _tenguTakingDamage = false; // Reset invincibility
+            _tenguDamageTimer.Stop();
+
+            // Timer for Werewolf taking damage
+            _werewolfDamageTimer = new System.Windows.Forms.Timer
+            {
+                Interval = InvincibilityDuration
+            };
+            _werewolfDamageTimer.Tick += (sender, args) => _werewolfTakingDamage = false; // Reset invincibility
+            _werewolfDamageTimer.Stop();
 
             
         }
@@ -329,23 +364,24 @@ namespace Platformer_Skybound
             {
                 if (_pressedKeys.Contains(Keys.A))
                 {
-                    _player.HandleKeyDown(Keys.Left, this.ClientSize);
+                    _player.HandleKeyDown(Keys.Left);
                     ScrollLevel();
                 }
                 else if (_pressedKeys.Contains(Keys.D))
                 {
-                    _player.HandleKeyDown(Keys.Right, this.ClientSize);
+                    _player.HandleKeyDown(Keys.Right);
                     ScrollLevel();
                 }
             }
 
             if (_pressedKeys.Contains(Keys.Space))
             {
-                _player.HandleKeyDown(Keys.Up, this.ClientSize);
+                _player.HandleKeyDown(Keys.Up);
             }
 
             _werewolf.Move();
             UpdateWerewolfVisibilityAndPosition();
+            HandleDamage();
         }
 
 
@@ -419,6 +455,7 @@ namespace Platformer_Skybound
             UpdateTenguVisibilityAndPosition();
             UpdateDoorPosition();
             CheckPlayerDoorInteraction();
+
         }
 
         private void UpdateTenguVisibilityAndPosition()
@@ -473,6 +510,22 @@ namespace Platformer_Skybound
             }
         }
 
+        private void EliminateMonster(Monster monster)
+        {
+            if (!monster.IsAlive())
+            {
+                if(monster is Tengu tengu)
+                {
+                    _levelPanel.Controls.Remove(_tenguPictureBox); // Remove Tengu from the level
+                    _tenguPictureBox.Dispose(); // Clean up resources
+                }
+                else if (monster is Werewolf werewolf)
+                {
+                    _levelPanel.Controls.Remove(_werewolfPictureBox); // Remove Werewolf from the level
+                    _werewolfPictureBox.Dispose(); // Clean up resources
+                }
+            }
+        }
 
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
@@ -485,8 +538,6 @@ namespace Platformer_Skybound
         }
 
 
-
-
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Escape)
@@ -496,6 +547,14 @@ namespace Platformer_Skybound
             }
 
             _pressedKeys.Add(e.KeyCode);
+        }
+
+        private void OnLevelMouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && !_player.IsAttacking)
+            {
+                _player.Attack();
+            }
         }
 
         // --------------------------------------- Interaction functions ----------------------------------------------------
@@ -515,6 +574,59 @@ namespace Platformer_Skybound
                 levelCompleteFlag = true;
                 MessageBox.Show("Level Complete!");
                 this.Close();
+            }
+        }
+
+        private void HandleDamage()
+        {
+            if (!_isInvincible)
+            {
+                if ((_player.GetPictureBox().Bounds.IntersectsWith(_tengu.GetPictureBox().Bounds) || _player.GetPictureBox().Bounds.IntersectsWith(_werewolf.GetPictureBox().Bounds)) && !_player.IsAttacking)
+                {
+                    _isInvincible = true;
+                    _invincibilityTimer.Start();
+
+                    _player.TakeDamage();
+
+                    if(_player.Health == 0)
+                    {
+                        MessageBox.Show("Game Over!");
+                        this.Close();
+                    }
+
+                    _healthLabel.Text = $"Health: {_player.Health}";
+                }
+                else
+                {
+                    if (_player.GetPictureBox().Bounds.IntersectsWith(_tengu.GetPictureBox().Bounds) && !_tenguTakingDamage && _player.IsAttacking)
+                    {
+                        _tenguTakingDamage = true;
+                        _tenguDamageTimer.Start();
+
+                        _tengu.TakeDamage();
+
+                        if (!_tengu.IsAlive())
+                        {
+                            EliminateMonster(_tengu);
+                        }
+
+                        _healthLabel.Text = $"Health: {_player.Health}";
+                    }
+                    else if (_player.GetPictureBox().Bounds.IntersectsWith(_werewolf.GetPictureBox().Bounds) && !_werewolfTakingDamage && _player.IsAttacking)
+                    {
+                        _werewolfTakingDamage = true;
+                        _werewolfDamageTimer.Start();
+
+                        _werewolf.TakeDamage();
+
+                        if (!_werewolf.IsAlive())
+                        {
+                            EliminateMonster(_werewolf);
+                        }
+
+                        _healthLabel.Text = $"Health: {_player.Health}";
+                    }
+                }
             }
         }
 

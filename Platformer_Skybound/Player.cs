@@ -34,15 +34,23 @@ namespace Platformer_Skybound
         int LevelWidth = MorningLevel.LevelWidth;
         public event Action<int> PlayerMoved;
 
+        // For dealing damage
+        private const int AttackDuration = 750;
+        private System.Windows.Forms.Timer _attackTimer;
+        public bool IsAttacking { get; private set; }
+        public System.Windows.Forms.Timer AttackTimer { get; private set; }
+
         public Player(int health, Point startPosition, int levelWidth)
         {
             Health = health;
             LevelWidth = levelWidth;
             _animations = new Dictionary<string, (Image spriteSheet, int frameCount)>();
+            IsAttacking = false;
 
             LoadAnimation("idle", Resources.player_idle, 4);
             LoadAnimation("run", Resources.player_run, 6);
             LoadAnimation("jump", Resources.player_jump, 8);
+            LoadAnimation("attack", Resources.player_attack, 6);
 
             _currentAnimation = "idle";
             _currentFrame = 0;
@@ -66,6 +74,14 @@ namespace Platformer_Skybound
             _physicsTimer.Tick += (sender, e) => HandleJumpAndFall();
             _physicsTimer.Start();
 
+            // Timer for attacking
+            _attackTimer = new System.Windows.Forms.Timer
+            {
+                Interval = AttackDuration
+            };
+            _attackTimer.Tick += (sender, args) => IsAttacking = false; // Reset attack
+            _attackTimer.Stop();
+
             UpdateSprite();
         }
 
@@ -81,7 +97,7 @@ namespace Platformer_Skybound
 
         public int GetPlayerXPosition() => _playerPictureBox.Left;
 
-        public void HandleKeyDown(Keys key, Size boundary)
+        public void HandleKeyDown(Keys key)
         {
             switch (key)
             {
@@ -113,6 +129,17 @@ namespace Platformer_Skybound
             }
 
             UpdateSprite(); // Memperbarui animasi setelah setiap langkah
+        }
+
+        public void Attack()
+        {
+            if (IsAttacking) return; // Prevent starting a new attack if one is ongoing
+
+            IsAttacking = true;
+            _currentAnimation = "attack";
+            _currentFrame = 0; // Reset animation frame for attack
+            UpdateSprite();
+            _attackTimer.Start();
         }
 
         public void SetPositionX(int x)
@@ -155,11 +182,15 @@ namespace Platformer_Skybound
             {
                 _animationTimer.Interval = 125;  // Regular animation speed when on the ground
 
-                if (!_isMoving && _currentAnimation != "idle")
+                if (IsAttacking && _currentAnimation != "attack")
+                {
+                    _currentAnimation = "attack";
+                }
+                else if (!_isMoving && _currentAnimation != "idle" && !IsAttacking)
                 {
                     _currentAnimation = "idle";
                 }
-                else if (_isMoving && _currentAnimation != "run")
+                else if (_isMoving && _currentAnimation != "run" && !IsAttacking)
                 {
                     _currentAnimation = "run";
                 }
@@ -225,8 +256,10 @@ namespace Platformer_Skybound
             oldImage?.Dispose();
         }
 
-
-
+        public void TakeDamage()
+        {
+            Health -= 1;
+        }
 
     }
 }

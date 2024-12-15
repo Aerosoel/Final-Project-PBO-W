@@ -35,5 +35,10 @@ namespace Platformer_Skybound
         public abstract void Move();
 
         protected abstract void Animate();
+
+        public void TakeDamage()
+        {
+            Health -= 1;
+        }
     }
 }
