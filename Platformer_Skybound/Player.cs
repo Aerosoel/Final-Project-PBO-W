@@ -255,10 +255,43 @@ namespace Platformer_Skybound
             // Dispose of the old image to free memory
             oldImage?.Dispose();
         }
+        public void SetPositionY(int y)
+        {
+            _playerPictureBox.Top = y;
+        }
+
+        private System.Windows.Forms.Timer _damageBlinkTimer;
+        private int _blinkCount;
 
         public void TakeDamage()
         {
             Health -= 1;
+
+            // Setup for blinking effect
+            _blinkCount = 0;
+
+            if (_damageBlinkTimer == null)
+            {
+                _damageBlinkTimer = new System.Windows.Forms.Timer
+                {
+                    Interval = 150 // Time between blinks in milliseconds
+                };
+                _damageBlinkTimer.Tick += (sender, args) =>
+                {
+                    // Toggle visibility for blinking
+                    _playerPictureBox.Visible = !_playerPictureBox.Visible;
+                    _blinkCount++;
+
+                    // Stop the timer after a few blinks
+                    if (_blinkCount >= 10) // Adjust for 3 full on/off cycles
+                    {
+                        _damageBlinkTimer.Stop();
+                        _playerPictureBox.Visible = true; // Ensure visibility is restored
+                    }
+                };
+            }
+
+            _damageBlinkTimer.Start();
         }
 
     }
